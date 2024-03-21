@@ -237,6 +237,9 @@ exports.create = async (req, res) => {
                 ).messagingProfiles.create({
                   name: "VoIP sms Web Application",
                   enabled: true,
+                  "whitelisted_destinations": [
+                    "US"
+                  ],
                   webhook_url: combineURLs(
                     process.env.BASE_URL.trim(),
                     "api/setting/receive-sms/",

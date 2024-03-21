@@ -184,6 +184,7 @@ exports.create = async (req, res) => {
                   var outboundTel = await telnyxHelper.createOutboundVoice(
                     req.body.api_key
                   );
+                  console.log( outboundTel.data)
                   settingCheck.telnyx_outbound = outboundTel.data.id;
                 }
 

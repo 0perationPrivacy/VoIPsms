@@ -153,13 +153,14 @@ const deleteSIPApp = (apiKey, uuid) => {
 const createOutboundVoice = (apiKey) => {
     return new Promise(async (resolve,reject) =>  {
         try{
+            console.log('createOutboundVoice')
             const telnyx = Telnyx(apiKey);
             console.log(JSON.stringify(telnyx))
-            name = `outbound${moment().format('YYYYMMDDHHmm')}`
-            console.log(JSON.stringify(name))
+            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
+            console.log(JSON.stringify(myname))
             // In Node 10
             const outboundVoiceProfiles = await telnyx.outboundVoiceProfiles.create(
-                {"name": name}
+                {"name": myname}
               );
               // console.log(outboundVoiceProfiles.data)
              console.log(JSON.stringify(outboundVoiceProfiles.data))

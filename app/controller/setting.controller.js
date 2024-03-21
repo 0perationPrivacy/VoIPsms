@@ -488,7 +488,7 @@ exports.create = async (req, res) => {
     }
   } catch (error) {
     // console.log(error)
-    res.status(400).send({ status: false, message: error.message, data: [] });
+    res.status(400).send({ status: false, message: error.message, data: error });
   }
 };
 exports.getSetting = async (req, res) => {

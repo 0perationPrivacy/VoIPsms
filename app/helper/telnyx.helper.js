@@ -159,6 +159,7 @@ const createOutboundVoice = (apiKey) => {
                 {"name": `outbound${moment().format('YYYYMMDDHHmm')}`}
               );
               // console.log(outboundVoiceProfiles.data)
+             console.log(JSON.stringify(outboundVoiceProfiles.data))
             resolve(outboundVoiceProfiles);
         }catch(error){
              console.log(JSON.stringify(error))

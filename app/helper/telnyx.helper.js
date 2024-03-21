@@ -161,7 +161,7 @@ const createOutboundVoice = (apiKey) => {
               // console.log(outboundVoiceProfiles.data)
             resolve(outboundVoiceProfiles);
         }catch(error){
-            // console.log(error)
+             console.log(JSON.stringify(error))
             resolve(false);
         }
     });

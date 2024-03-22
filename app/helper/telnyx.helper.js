@@ -152,6 +152,9 @@ const deleteSIPApp = (apiKey, uuid) => {
 }
 function getAllMethods(object) {
     Object.getOwnPropertyNames(object).filter(function(property) {
+        if(property.substring(0,1)=='_'){
+
+        }else{
         try {
             console.log(typeof object[property] + ': ' + property);
         } catch (error) {
@@ -168,6 +171,7 @@ function getAllMethods(object) {
         
             console.log('----------------stop ' + property)
          }
+        }
     });
 }
 

@@ -192,11 +192,11 @@ const createOutboundVoice = (apiKey) => {
                 {"name": myname}
               );
               // console.log(outboundVoiceProfiles.data)
-             console.log(JSON.stringify(outboundVoiceProfiles.data))
+              getAllMethods(outboundVoiceProfiles)
             resolve(outboundVoiceProfiles);
         }catch(error){
             console.log(error.message)
-             console.trace(error.message)
+             console.log(error.stack)
             resolve(false);
         }
     });

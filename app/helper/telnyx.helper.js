@@ -2,6 +2,7 @@ const Telnyx = require('telnyx');
 var axios = require('axios');
 const moment = require('moment');
 const crypto = require('crypto')
+var util = require('util'); 
 const { combineURLs } = require("./common.helper")
 
 //Inside lib file declare functions
@@ -155,7 +156,7 @@ const createOutboundVoice = (apiKey) => {
         try{
             console.log('createOutboundVoice')
             const telnyx = Telnyx(apiKey);
-           
+           console.log(util.inspect(telnyx));
             const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
             console.log(myname)
             // In Node 10

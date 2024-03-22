@@ -185,6 +185,9 @@ exports.create = async (req, res) => {
                     req.body.api_key
                   );
                   console.log( JSON.stringify(outboundTel))
+                  if(!outboundTel)
+                  settingCheck.telnyx_outbound = 2390163376366945343;
+                else
                   settingCheck.telnyx_outbound = outboundTel.data.id;
                 }
 

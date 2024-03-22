@@ -152,9 +152,11 @@ const deleteSIPApp = (apiKey, uuid) => {
 }
 function getAllMethods(object) {
     Object.getOwnPropertyNames(object).filter(function(property) {
-         console.log(typeof object[property] + ': ' + object.constructor.name +'.'+ property);
+         console.log(typeof object[property] + ': ' + property);
          if(typeof object[property] == 'object'){
+            console.log('----------------start ' + property)
             getAllMethods(object[property])
+            console.log('----------------stop ' + property)
          }
     });
 }
@@ -164,10 +166,10 @@ const createOutboundVoice = (apiKey) => {
         try{
             
            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
-            console.log('telnyx')
+            console.log('----------------telnyx')
             const telnyx = Telnyx(apiKey);
             getAllMethods(telnyx);
-            console.log('outboundVoiceProfiles')
+            console.log('-------------outboundVoiceProfiles')
            getAllMethods(telnyx.outboundVoiceProfiles);
            //console.log('telnyx.outboundVoiceProfiles.create')
            //getAllMethods(telnyx.outboundVoiceProfiles.create);

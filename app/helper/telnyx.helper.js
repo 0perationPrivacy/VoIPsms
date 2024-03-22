@@ -156,9 +156,10 @@ const createOutboundVoice = (apiKey) => {
         try{
             console.log('createOutboundVoice')
             const telnyx = Telnyx(apiKey);
+           console.log(util.inspect(telnyx.outboundVoiceProfiles.create));
+           const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
+           console.log(myname)
            console.log(util.inspect(telnyx.outboundVoiceProfiles));
-            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
-            console.log(myname)
             // In Node 10
             const outboundVoiceProfiles = await telnyx.outboundVoiceProfiles.create(
                 {"name": myname}

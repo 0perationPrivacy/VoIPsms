@@ -150,16 +150,24 @@ const deleteSIPApp = (apiKey, uuid) => {
         }
     });
 }
+function getAllMethods(object) {
+    return Object.getOwnPropertyNames(object).filter(function(property) {
+        return typeof object[property] == 'function';
+    });
+}
 
 const createOutboundVoice = (apiKey) => {
     return new Promise(async (resolve,reject) =>  {
         try{
+            
             console.log('createOutboundVoice')
             const telnyx = Telnyx(apiKey);
-           console.log(util.inspect(telnyx.outboundVoiceProfiles.create));
+            console.log(getAllMethods(telnyx));
+            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
+           console.log(getAllMethods(telnyx.outboundVoiceProfiles));
            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
            console.log(myname)
-           console.log(util.inspect(telnyx.outboundVoiceProfiles));
+           console.log(getAllMethods(telnyx.outboundVoiceProfiles.create));
             // In Node 10
             const outboundVoiceProfiles = await telnyx.outboundVoiceProfiles.create(
                 {"name": myname}

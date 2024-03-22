@@ -151,8 +151,8 @@ const deleteSIPApp = (apiKey, uuid) => {
     });
 }
 function getAllMethods(object) {
-    return Object.getOwnPropertyNames(object).filter(function(property) {
-        return typeof object[property] == 'function';
+    Object.getOwnPropertyNames(object).filter(function(property) {
+         console.log(typeof object[property] + ': ' + property);
     });
 }
 
@@ -161,13 +161,13 @@ const createOutboundVoice = (apiKey) => {
         try{
             
            const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
-            console.log('createOutboundVoice')
+            console.log('telnyx')
             const telnyx = Telnyx(apiKey);
-            console.log(getAllMethods(telnyx));
-            console.log(myname)
-           console.log(getAllMethods(telnyx.outboundVoiceProfiles));
-           console.log(myname)
-           console.log(getAllMethods(telnyx.outboundVoiceProfiles.create));
+            getAllMethods(telnyx);
+            console.log('outboundVoiceProfiles')
+           getAllMethods(telnyx.outboundVoiceProfiles);
+           console.log('telnyx.outboundVoiceProfiles.create')
+           getAllMethods(telnyx.outboundVoiceProfiles.create);
             // In Node 10
             const outboundVoiceProfiles = await telnyx.outboundVoiceProfiles.create(
                 {"name": myname}

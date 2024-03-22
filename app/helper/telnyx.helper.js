@@ -155,7 +155,7 @@ const createOutboundVoice = (apiKey) => {
         try{
             console.log('createOutboundVoice')
             const telnyx = Telnyx(apiKey);
-            console.log(JSON.stringify(telnyx))
+           
             const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
             console.log(myname)
             // In Node 10

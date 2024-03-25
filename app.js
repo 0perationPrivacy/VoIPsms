@@ -9,7 +9,7 @@ const path = require('path');
 var session = require('cookie-session')
 var compression = require('compression')
 app.use(compression())
-
+console.log('new')
 var expiryDate = new Date(Date.now() + 60 * 60 * (1000 * 12 * 30)) // 30 day
 app.use(session({
   name: 'session',

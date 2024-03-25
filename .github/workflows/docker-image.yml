@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag macide/voipsuite:git
+    - name: Invoke deployment hook
+      uses: distributhor/workflow-webhook@v3
+      with:
+        webhook_type: 'json-extended'
+        webhook_url: 'https://portainer.derek.bartoli.me/api/stacks/webhooks/d0710922-0f3f-4a54-8035-eae4a4fe8bd6'
+        data: '{ }'

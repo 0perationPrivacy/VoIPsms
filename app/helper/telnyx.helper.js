@@ -2,6 +2,7 @@ const Telnyx = require('telnyx');
 var axios = require('axios');
 const moment = require('moment');
 const crypto = require('crypto')
+var util = require('util'); 
 const { combineURLs } = require("./common.helper")
 
 //Inside lib file declare functions
@@ -149,19 +150,53 @@ const deleteSIPApp = (apiKey, uuid) => {
         }
     });
 }
+function getAllMethods(object) {
+    Object.getOwnPropertyNames(object).filter(function(property) {
+        if(property.substring(0,1)=='_'){
+
+        }else{
+        try {
+            console.log(typeof object[property] + ': ' + property);
+        } catch (error) {
+            console.log(error.message)
+        }
+        
+         if(typeof object[property] == 'object'){
+            console.log('----------------start ' + property)
+            try {
+            getAllMethods(object[property])
+        } catch (error) {
+            console.log(error.message)
+        }
+        
+            console.log('----------------stop ' + property)
+         }
+        }
+    });
+}
 
 const createOutboundVoice = (apiKey) => {
     return new Promise(async (resolve,reject) =>  {
         try{
+            
+           const myname = `outbound${moment().format('YYYYMMDDHHmm')}`
+            console.log('----------------telnyx')
             const telnyx = Telnyx(apiKey);
+            getAllMethods(telnyx);
+            console.log('-------------outboundVoiceProfiles')
+           getAllMethods(telnyx.outboundVoiceProfiles);
+           //console.log('telnyx.outboundVoiceProfiles.create')
+           //getAllMethods(telnyx.outboundVoiceProfiles.create);
             // In Node 10
             const outboundVoiceProfiles = await telnyx.outboundVoiceProfiles.create(
-                {"name": `outbound${moment().format('YYYYMMDDHHmm')}`}
+                {"name": myname}
               );
               // console.log(outboundVoiceProfiles.data)
+              getAllMethods(outboundVoiceProfiles)
             resolve(outboundVoiceProfiles);
         }catch(error){
-            // console.log(error)
+            console.log(error.message)
+             console.log(error.stack)
             resolve(false);
         }
     });

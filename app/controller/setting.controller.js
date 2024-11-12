@@ -184,10 +184,6 @@ exports.create = async (req, res) => {
                   var outboundTel = await telnyxHelper.createOutboundVoice(
                     req.body.api_key
                   );
-                  //console.log( JSON.stringify(outboundTel))
-                  if(!outboundTel)
-                  settingCheck.telnyx_outbound = 2390163376366945343;
-                else
                   settingCheck.telnyx_outbound = outboundTel.data.id;
                 }
 
@@ -241,9 +237,6 @@ exports.create = async (req, res) => {
                 ).messagingProfiles.create({
                   name: "VoIP sms Web Application",
                   enabled: true,
-                  "whitelisted_destinations": [
-                    "US"
-                  ],
                   webhook_url: combineURLs(
                     process.env.BASE_URL.trim(),
                     "api/setting/receive-sms/",
@@ -493,7 +486,7 @@ exports.create = async (req, res) => {
     }
   } catch (error) {
     // console.log(error)
-    res.status(400).send({ status: false, message: error.message, data: error.stack });
+    res.status(400).send({ status: false, message: error.message, data: [] });
   }
 };
 exports.getSetting = async (req, res) => {
